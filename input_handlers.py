@@ -10,19 +10,20 @@ class EventHandler(tcod.event.EventDispatch[Action]):
         raise SystemExit()
 
     #method receives key press events and returns either Action subclass or None if no valid key pressed
-    
     def ev_keydown(self, event: tcod.event.Keydown) -> Optional[Action]:
+        #var holds subclass of Action, if no key pressed -> None
         action: Optional[Action] = None
-
-        key = event.sym 
+        #holds actual key press w/o modifiers
+        key = event.sym
+        #if/else for key pressed
         if key == tcod.event.K_UP:
-            action = movementAction(dx=0, dy=-1)
+            action = MovementAction(dx=0, dy=-1)
         elif key ==tcod.event.K_DOWN:
-            action == MovementAction(dx=0, dy=1)
+            action = MovementAction(dx=0, dy=1)
         elif key == tcod.event.K_LEFT:
-            action == MovementAction(dx=-1, dy=0)
+            action = MovementAction(dx=-1, dy=0)
         elif key == tcod.event.K_RIGHT:
-            action == MovementAction(dx=1, dy=0)
+            action = MovementAction(dx=1, dy=0)
         elif key == tcode.event.K_ESCAPE:
             action = EscapeAction()
 
