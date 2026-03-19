@@ -29,25 +29,11 @@ def main() -> None:
     ) as context:
         root_console = tcod.Console(screen_width, screen_height, order="F")
         while True:
-            #root_console.print(x=player.x, y=player.y, string=player.char, fg=player.color)
+            #print map, entites, and context
             engine.render(console=root_console, context=context)
-
-            #context.present(root_console)
+            # wait for key press and proccess it with event_handler
             events = tcod.event.wait()
             engine.handle_events(events)
-            #root_console.clear() #clear leftover @
-
-            """for event in tcod.event.wait():
-                #send event to ev_keydown() and return Action
-                action = event_handler.dispatch(event)
-                #handling no action
-                if action is None:
-                    continue
-                #if action is instance of MovementAction, move @ symbol
-                if isinstance(action, MovementAction):
-                    player.move(dx=action.dx, dy=action.dy)
-                elif isistance(action, EscapeAction):
-                    raise SystemExit()"""
 
 if __name__ == "__main__":
     main()
