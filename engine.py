@@ -1,7 +1,6 @@
 from typing import Set, Iterable, Any
 from tcod.context import Context
 from tcod.console import Console
-from actions import EscapeAction, MovementAction
 from entity import Entity
 from input_handlers import EventHandler
 
@@ -20,15 +19,8 @@ class Engine:
             # Handling no action
             if action is None:
                 continue
-            # If action is instance of MovementAction, move player
-            if isinstance(action, MovementAction):
-                # If the tile is walkable and is within boundaries, then 
-                # move the player to the tile
-                if self.game_map.tiles["walkable"][self.player.x + action.dx,
-                self.player.y + action.dy]:
-                    self.player.move(dx=action.dx, dy=action.dy)
-            elif isinstance(action, EscapeAction):
-                raise SystemExit()
+            
+            action.perform(self, self.player)
 
     #draws screen, prints entities, presents context, then clears console
     def render(self, console: Console, context: Context) -> None:
