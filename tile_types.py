@@ -28,7 +28,7 @@ def new_tile(
     transparent, int,
     dark: Tuple[int, Tuple[int, int, int], Tuple[int, int, int]],
 ) -> np.ndarray:
-    # returns numpy array of one tile_dt element and returns it
+    """Returns numpy array of one tile_dt element and returns it"""
     return np.array((walkable, transparent, dark), dtype=tile_dt)
 
 floor = new_tile(

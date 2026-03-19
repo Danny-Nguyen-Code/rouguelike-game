@@ -4,21 +4,27 @@ import tcod
 from input_handlers import EventHandler
 from entity import Entity
 from engine import Engine
+from game_map import GameMap
 
 def main() -> None:
     screen_width = 80
     screen_height = 50
+    map_width = 80
+    map_height = 45
 
     tileset = tcod.tileset.load_tilesheet(
         "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
-    #receive events and process them
+    # Receive events and process them
     event_handler = EventHandler()
 
     player = Entity(int(screen_width / 2), int(screen_height / 2), "@", (255, 255, 255))
     npc = Entity(int(screen_width / 2 - 5), int(screen_height / 2), "@", (255, 255, 0))
     entities = {npc, player}
-    engine = Engine(entities=entities, event_handler=event_handler, player=player)
+    
+    game_map = GameMap(map_width, map_height)
+    # engine = Engine(entities=entities, event_handler=event_handler, player=player)
+    engine = Engine(entities=entities, event_handler=event_handler, game_map=game_map, player=player)
 
     with tcod.context.new_terminal(
         screen_width,
@@ -27,11 +33,13 @@ def main() -> None:
         title="Yet Another Roguelike Tutorial",
         vsync=True,
     ) as context:
+        # Creates console to draw onto, set width/height to same as terminal, and
+        # order which changes numpy access of 2D arrays from [y,x] to [x,y]
         root_console = tcod.Console(screen_width, screen_height, order="F")
         while True:
-            #print map, entites, and context
+            # Print map, entites, and context
             engine.render(console=root_console, context=context)
-            # wait for key press and proccess it with event_handler
+            # Wait for key press and proccess it with event_handler
             events = tcod.event.wait()
             engine.handle_events(events)
 
