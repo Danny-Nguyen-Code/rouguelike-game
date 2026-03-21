@@ -28,7 +28,10 @@ def main() -> None:
     entities = {npc, player}
     
     # Generate dungeon
-    game_map = generate_dungeon(map_width, map_height)
+    game_map = generate_dungeon(max_rooms=max_rooms, room_min_size=room_min_size,
+        room_max_size=room_max_size, map_width=map_width, map_height=map_height,
+        player=player
+    )
 
     engine = Engine(entities=entities, event_handler=event_handler, game_map=game_map, player=player)
 
