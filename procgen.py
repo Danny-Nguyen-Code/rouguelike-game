@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import tile_types
 import random
 import tcod
 
 from typing import Tuple, Iterator, List, TYPE_CHECKING
 from game_map import GameMap
-from __future__ import annotations
 
 if TYPE_CHECKING:
     from entity import Entity
