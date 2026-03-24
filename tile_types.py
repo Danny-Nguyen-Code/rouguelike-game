@@ -34,7 +34,7 @@ def new_tile(
     Returns numpy array of one tile_dt element and returns it"""
     return np.array((walkable, transparent, dark, light), dtype=tile_dt)
 
-# SHROUND is the unexplored, unseen tiles
+# SHROUND is the unexplored, unseen tiles, draws a black tile
 SHROUD = np.array((ord(" "), (255, 255, 255), (0, 0, 0)), dtype=graphic_dt)
 
 floor = new_tile(
