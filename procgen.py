@@ -73,8 +73,14 @@ def tunnel_between(
             yield x, y
 
 
-def generate_dungeon(max_rooms: int, room_min_size: int, room_max_size: int,
-    map_width: int, map_height: int, player: Entity,
+def generate_dungeon(
+    max_rooms: int,
+    room_min_size: int,
+    room_max_size: int,
+    map_width: int,
+    map_height: int,
+    max_monsters_per_room: int,
+    player: Entity,
 ) -> GameMap:
     """Generate new dungeon map"""
     dungeon = GameMap(map_width, map_height, entities=[player])
