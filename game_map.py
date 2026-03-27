@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from entity import Entity
 
 class GameMap:
-    def __init__(self, width: int, height: int, Iterable[Entity] = ()):
+    def __init__(self, width: int, height: int, entities: Iterable[Entity] = ()):
         self.width, self.height = width, height
         self.entities = set(entities)
         # Create 2D array, filled with value of tile_types.floor to fill
